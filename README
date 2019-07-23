@@ -1,0 +1,23 @@
+Currently in the process of cleaning up the Account Trigger to follow best practices according to APEX. Received the
+following recommendations from Josiah:
+
+    // 1. Loop through all new Accountsv to collect all zip code
+    //	a. filter out Accounts with unmatched conditions 
+    //	b. collect all zip codes into a Set<String> zipCodesSet
+    
+    // 2. Run a soql to find all matched Parent Accounts with same zip codes 
+    //    Read about Apex SET class
+    //    List<Accoutn> parents = [select id from Account where billingpostalcode in :zipCodesSet];
+    // 
+    // 3. Create a map of Account with zip code as key
+    // 	Map<String, Account> zipCodeToAccount = new Map<String, Account>();
+    // for (Account p : parents) { zipCodeToAccount.put(p.BillingPostalCode, p); }
+    // { '92101', {Account}}
+    // 
+    // 3. Loop through all new Accounts
+    // a. find match zip code 
+    // if (zipCodeToAccount.containsKey(a.BIllingPostalCode)) { 
+    // 	Account parent = zipCodeToAccount.get(a.BIllingPostalCode);
+    // 	a.ParentId = parent.Id;
+    // 	}
+	
