@@ -1,3 +1,10 @@
+Story: As a Loving Houston staff member I would like to automatically relate a school district's Account record with a 
+new church's Account record based on zip code.
+
+Acceptance Criteria:
+• When a new church Account record is created with a zip code filled in, the District Account lookup field is filled in with a district with that same zip code
+• If multiple districts share the same zip code, no district is filled in
+
 Currently in the process of cleaning up the Account Trigger to follow best practices according to APEX. Received the
 following recommendations from Josiah:
 
