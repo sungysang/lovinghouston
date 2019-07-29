@@ -5,7 +5,8 @@ Acceptance Criteria:
 • When a new church Account record is created with a zip code filled in, the District Account lookup field is filled in with a district with that same zip code
 • If multiple districts share the same zip code, no district is filled in
 
-Currently in the process of cleaning up the Account Trigger to follow best practices according to apex best practices (https://developer.salesforce.com/index.php?title=Apex_Code_Best_Practices&oldid=26951)
+Currently in the process of cleaning up the Account Trigger to follow best practices according 
+to apex best practices (https://developer.salesforce.com/index.php?title=Apex_Code_Best_Practices&oldid=26951)
 Received the following recommendations from Josiah:
 
     // 1. Loop through all new Accountsv to collect all zip code
