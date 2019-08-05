@@ -32,17 +32,25 @@ Trigger should be after update/insert
 
 4. Populate the Account lookup with the key value.
 
-    Set<String> zipCodeSet = [SELECT BillingPostalCode
-                            FROM Account
-                            WHERE Id in :Trigger.New AND ParentId = null AND RecordTypeId = '0121N000000qpORQAY'];
+    Set<String> zipCodeSet = new Set<String>();
+
+    for (Account a : [SELECT BillingPostalCode
+                        FROM Account
+                        WHERE RecordTypeId = '0121N000000qpORQAY'
+                        AND Id IN :Trigger.new
+                        AND ParentId = null //ParentId or DistrictLookupId?
+                        AND BillingPostalCode != null]) {
+
+                            zipCodeSet.add(a.BillingPostalCode);
+                        }
     
-    List<Account> matchedSchoolDistricts = [SELECT Id
+    List<Account> matchedSchoolDistricts = new List<Account>([SELECT Id, BillingPostalCode
                                             FROM Account
                                             WHERE Type = 'School District' 
-                                            AND BillingPostalCode IN :zipCodeSet];
+                                            AND BillingPostalCode IN :zipCodeSet]);
 
     Map<String, Account> zipCodeMap = new Map<String, Account> ();
-    List<String> zipCodeKeyDuplicates = new List<String>();
+    Set<String> zipCodeKeyDuplicates = new Set<String>();
     for (Account p : matchedSchoolDistricts) {
 
         if (zipCodeMap.containsKey(p.BillingPostalCode)) {
