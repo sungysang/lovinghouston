@@ -38,7 +38,7 @@ Trigger should be after update/insert
                         FROM Account
                         WHERE RecordTypeId = '0121N000000qpORQAY'
                         AND Id IN :Trigger.new
-                        AND ParentId = null //ParentId or DistrictLookupId?
+                        AND School_District_Lookup__c = null 
                         AND BillingPostalCode != null]) {
 
                             zipCodeSet.add(a.BillingPostalCode);
@@ -77,7 +77,7 @@ Trigger should be after update/insert
     for (account a : Trigger.New) {
         if (zipCodeMap.containsKey(a.BillingPostalCode)) {
             Account match = zipCodeMap.get(a.BillingPostalCode);
-            a.ParentId = match.Id;
+            a.School_District_Lookup__c = match.Id;
         }
     } 
 
