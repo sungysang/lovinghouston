@@ -4,7 +4,7 @@ trigger populateSchoolDistrictBasedOnZip on Account (before update, before inser
     Set<String> zipCodeSet = new Set<String>();
 
     for (Account a : Trigger.new) {
-        if (a.RecordTypeId = '0121N000000qpORQAY' && BillingPostalCode != null && School_District_Lookup__c = null) {
+        if (a.RecordTypeId == '0121N000000qpORQAY' && BillingPostalCode != null && School_District_Lookup__c == null) {
             zipCodeSet.add(a.BillingPostalCode);
         }
     }
