@@ -3,9 +3,9 @@ trigger populateSchoolDistrictBasedOnZip on Account (before update, before inser
 // Create and add zipcodes into a Set. Criteria set for only Churches with zipcodes populated and blank School Districts.
     Set<String> zipCodeSet = new Set<String>();
 
-    for (Account a : Trigger:new) {
+    for (Account a : Trigger.new) {
         if (a.RecordTypeId = '0121N000000qpORQAY' && BillingPostalCode != null && School_District_Lookup__c = null) {
-            zipCodeSet.add(a.BillingPostalCode;
+            zipCodeSet.add(a.BillingPostalCode);
         }
     }
 
@@ -41,5 +41,6 @@ trigger populateSchoolDistrictBasedOnZip on Account (before update, before inser
             a.School_District_Lookup__c = match.Id;
         }
     } 
+}
 
   
